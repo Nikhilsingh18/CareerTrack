@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerTrack - Find Your Job</title>
+    <link rel="stylesheet" href="./style.css">
+
+    <style>
+        
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>CareerTrack</h1>
+        <p>Find your next opportunity</p>
+    </header>
+
+    <section class="hero">
+        <h2>Find Your Dream Job</h2>
+        <p>Explore opportunities and take the next step in your career.</p>
+
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search by job title, company, or location...">
+            <select id="jobTypeFilter">
+                <option value="All">All Job Types</option>
+                <option value="Internship">Internship</option>
+                <option value="Full-time">Full-time</option>
+            </select>
+        </div>
+    </section>
+
+    <section class="job-section">
+        <h2>Available Jobs</h2>
+        <p id="jobCount"></p>
+        <p id="savedCount">Saved jobs: 0</p>
+        <p id="totalJobs"></p>
+        <div class="job-list" id="jobList"></div>
+    </section>
+
+    <footer>
+        <p>CareerTrack &copy; 2026 | Built by Nikhil Singh</p>
+    </footer>
+
+    <script>
+        let jobs = [
+            {
+                title: "Frontend Developer",
+                company: "TechNova",
+                location: "Remote",
+                type: "Internship",
+                salary: "₹10,000/month",
+                skills: "HTML CSS JavaScript"
+            },
+            {
+                title: "Backend Developer",
+                company: "CodeCraft",
+                location: "Bengaluru",
+                type: "Full-time",
+                salary: "₹6 LPA",
+                skills: "Node.js Express MongoDB"
+            },
+            {
+                title: "React Developer Intern",
+                company: "WebWorks",
+                location: "Patna",
+                type: "Internship",
+                salary: "₹8,000/month",
+                skills: "React JavaScript CSS"
+            },
+            {
+                title: "Python Developer",
+                company: "DataBridge",
+                location: "Remote",
+                type: "Full-time",
+                salary: "₹5 LPA",
+                skills: "Python SQL APIs"
+            },
+            {
+                title: "MERN Stack Developer",
+                company: "InnovateLabs",
+                location: "Noida",
+                type: "Internship",
+                salary: "₹12,000/month",
+                skills: "MongoDB Express React Node.js"
+            },
+            {
+                title: "Software Engineer Intern",
+                company: "NextGen Tech",
+                location: "Delhi",
+                type: "Internship",
+                salary: "₹15,000/month",
+                skills: "C++ JavaScript Problem Solving"
+            },
+            {
+                title: "AI / Machine Learning Engineer",
+                company: "CareerTrack",
+                location: "Hyderabad",
+                type: "Full-time",
+                salary: "₹14,00,000/month",
+                skills: "Builds intelligent models and neural networks"
+            }
+        ];
+
+        
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
