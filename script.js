@@ -1,4 +1,3 @@
-
 let jobs = [
     {
         title: "Frontend Developer",
@@ -6,7 +5,8 @@ let jobs = [
         location: "Remote",
         type: "Internship",
         salary: "₹8,000/month",
-        skills: "HTML CSS JavaScript"
+        skills: "HTML CSS JavaScript",
+        description: "Build responsive web pages, fix UI bugs, and work with the development team."
     },
     {
         title: "MERN Stack Developer",
@@ -14,7 +14,8 @@ let jobs = [
         location: "Bangalore",
         type: "Full-time",
         salary: "₹5 LPA",
-        skills: "MongoDB Express React Node.js"
+        skills: "MongoDB Express React Node.js",
+        description: "We are looking for a motivated MERN Stack Developer to join our team at WebWorks."
     },
     {
         title: "JavaScript Developer",
@@ -22,7 +23,8 @@ let jobs = [
         location: "Remote",
         type: "Internship",
         salary: "₹9,000/month",
-        skills: "JavaScript HTML CSS"
+        skills: "JavaScript HTML CSS",
+        description: "BrightCode is seeking an enthusiastic JavaScript Developer Intern to join our remote development team."
     },
     {
         title: "React Developer",
@@ -30,7 +32,8 @@ let jobs = [
         location: "Patna",
         type: "Full-time",
         salary: "₹4 LPA",
-        skills: "React JavaScript CSS"
+        skills: "React JavaScript CSS",
+        description: "CodeCraft is looking for a passionate React Developer to join our core development team in Patna."
     },
     {
         title: "Backend Developer",
@@ -38,7 +41,8 @@ let jobs = [
         location: "Delhi",
         type: "Internship",
         salary: "₹10,000/month",
-        skills: "Node.js Express MongoDB"
+        skills: "Node.js Express MongoDB",
+        description: ""
     },
     {
         title: "Python Developer",
@@ -46,7 +50,8 @@ let jobs = [
         location: "Remote",
         type: "Full-time",
         salary: "₹5 LPA",
-        skills: "Python SQL APIs"
+        skills: "Python SQL APIs",
+        description: " "
     },
     {
         title: "AI / Machine Learning Engineer",
@@ -54,7 +59,8 @@ let jobs = [
         location: "Hyderabad",
         type: "Full-time",
         salary: "₹1,00,000/month",
-        skills: "Builds intelligent models and neural networks"
+        skills: "Machine Learning Neural Networks Python",
+        description: "CareerTrack is seeking a talented AI / Machine Learning Engineer to join our high-impact tech team in Hyderabad."
     }
 ];
 
@@ -65,6 +71,17 @@ let totalJobs = document.getElementById("totalJobs");
 let jobTypeFilter = document.getElementById("jobTypeFilter");
 let savedCount = document.getElementById("savedCount");
 let savedJobsList = document.getElementById("savedJobsList");
+
+let jobModal = document.getElementById("jobModal");
+let closeModal = document.getElementById("closeModal");
+
+let modalTitle = document.getElementById("modalTitle");
+let modalCompany = document.getElementById("modalCompany");
+let modalLocation = document.getElementById("modalLocation");
+let modalType = document.getElementById("modalType");
+let modalSalary = document.getElementById("modalSalary");
+let modalSkills = document.getElementById("modalSkills");
+let modalDescription = document.getElementById("modalDescription");
 
 let savedJobs = JSON.parse(
     localStorage.getItem("savedJobs") || "[]"
@@ -115,6 +132,31 @@ function displaySavedJobs() {
     });
 }
 
+function showJobDetails(job) {
+    modalTitle.textContent = job.title;
+    modalCompany.textContent = job.company;
+    modalLocation.textContent = job.location;
+    modalType.textContent = job.type;
+    modalSalary.textContent = job.salary;
+    modalSkills.textContent = job.skills;
+
+    modalDescription.textContent =
+        job.description.trim() ||
+        "More information about this job will be available soon.";
+
+    jobModal.showModal();
+}
+
+closeModal.addEventListener("click", function () {
+    jobModal.close();
+});
+
+jobModal.addEventListener("click", function (event) {
+    if (event.target === jobModal) {
+        jobModal.close();
+    }
+});
+
 function displayJobs(jobArray) {
     jobList.innerHTML = "";
     jobCount.textContent = jobArray.length + " job(s) found";
@@ -155,6 +197,14 @@ function displayJobs(jobArray) {
         details.appendChild(location);
         details.appendChild(type);
         details.appendChild(skills);
+
+        let detailsButton = document.createElement("button");
+        detailsButton.textContent = "View Details";
+        detailsButton.className = "details-button";
+
+        detailsButton.addEventListener("click", function () {
+            showJobDetails(job);
+        });
 
         let saveButton = document.createElement("button");
         saveButton.className = "save-button";
@@ -206,6 +256,7 @@ function displayJobs(jobArray) {
         card.appendChild(company);
         card.appendChild(details);
         card.appendChild(salary);
+        card.appendChild(detailsButton);
         card.appendChild(saveButton);
 
         jobList.appendChild(card);
