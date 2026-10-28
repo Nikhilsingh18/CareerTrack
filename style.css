@@ -321,3 +321,35 @@ h2 {
         padding: 18px;
     }
 }
+
+.clear-button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 15px;
+    background: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.clear-button:hover {
+    background: #b91c1c;
+}
+
+.clear-button:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
