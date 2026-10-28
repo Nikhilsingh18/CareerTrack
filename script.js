@@ -1,3 +1,4 @@
+
 let jobs = [
     {
         title: "Frontend Developer",
@@ -83,6 +84,8 @@ let modalSalary = document.getElementById("modalSalary");
 let modalSkills = document.getElementById("modalSkills");
 let modalDescription = document.getElementById("modalDescription");
 
+let clearSavedButton = document.getElementById("clearSavedButton");
+
 let savedJobs = JSON.parse(
     localStorage.getItem("savedJobs") || "[]"
 );
@@ -91,6 +94,7 @@ totalJobs.textContent = "Total jobs available: " + jobs.length;
 
 function displaySavedJobs() {
     savedCount.textContent = "Saved jobs: " + savedJobs.length;
+    clearSavedButton.disabled = savedJobs.length === 0;
     savedJobsList.innerHTML = "";
 
     if (savedJobs.length === 0) {
@@ -132,6 +136,25 @@ function displaySavedJobs() {
     });
 }
 
+function clearSavedJobs() {
+    if (savedJobs.length === 0) {
+        return;
+    }
+
+    savedJobs = [];
+
+    localStorage.setItem(
+        "savedJobs",
+        JSON.stringify(savedJobs)
+    );
+
+    displaySavedJobs();
+    searchJobs();
+}
+
+// Clear All button listener must stay outside other event listeners
+clearSavedButton.addEventListener("click", clearSavedJobs);
+
 function showJobDetails(job) {
     modalTitle.textContent = job.title;
     modalCompany.textContent = job.company;
@@ -141,7 +164,7 @@ function showJobDetails(job) {
     modalSkills.textContent = job.skills;
 
     modalDescription.textContent =
-        job.description.trim() ||
+        (job.description || "").trim() ||
         "More information about this job will be available soon.";
 
     jobModal.showModal();
