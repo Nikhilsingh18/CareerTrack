@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>CareerTrack - Job Portal</title>
+
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
@@ -20,11 +22,20 @@
 
     <main class="container">
 
-        <section class="search-section">
-            <h2>Find Jobs</h2>
+        <section class="search-section" aria-labelledby="searchHeading">
+            <h2 id="searchHeading">Find Jobs</h2>
 
             <div class="search-controls">
-                <input type="text" id="searchInput" placeholder="Search job, company, location or skills...">
+                <label for="searchInput" class="visually-hidden">
+                    Search jobs
+                </label>
+
+                <input type="text" id="searchInput" placeholder="Search job, company, location or skills..."
+                    autocomplete="off">
+
+                <label for="jobTypeFilter" class="visually-hidden">
+                    Filter by job type
+                </label>
 
                 <select id="jobTypeFilter">
                     <option value="All">All Job Types</option>
@@ -34,19 +45,28 @@
             </div>
 
             <p id="totalJobs"></p>
-            <p id="jobCount"></p>
+            <p id="jobCount" aria-live="polite"></p>
         </section>
 
         <div class="content-layout">
 
-            <section class="jobs-section">
-                <h2>Available Jobs</h2>
-                <div id="jobList" class="job-list"></div>
+            <section class="jobs-section" aria-labelledby="jobsHeading">
+                <h2 id="jobsHeading">Available Jobs</h2>
+
+                <div id="jobList" class="job-list" aria-live="polite"></div>
             </section>
 
-            <aside class="saved-section">
-                <h2>⭐ My Saved Jobs</h2>
-                <p id="savedCount">Saved jobs: 0</p>
+            <aside class="saved-section" aria-labelledby="savedHeading">
+                <h2 id="savedHeading">⭐ My Saved Jobs</h2>
+
+                <p id="savedCount" aria-live="polite">
+                    Saved jobs: 0
+                </p>
+
+                <button type="button" id="clearSavedButton" class="clear-button">
+                    Clear All Saved Jobs
+                </button>
+
                 <div id="savedJobsList"></div>
             </aside>
 
@@ -54,25 +74,45 @@
 
     </main>
 
-    <dialog id="jobModal" class="job-modal">
+    <dialog id="jobModal" class="job-modal" aria-labelledby="modalTitle">
         <div class="modal-header">
             <h2 id="modalTitle">Job Details</h2>
-            <button type="button" id="closeModal" class="close-button">
+
+            <button type="button" id="closeModal" class="close-button" aria-label="Close job details">
                 &times;
             </button>
         </div>
-    
+
         <div class="modal-content">
-            <p><strong>Company:</strong> <span id="modalCompany"></span></p>
-            <p><strong>Location:</strong> <span id="modalLocation"></span></p>
-            <p><strong>Job Type:</strong> <span id="modalType"></span></p>
-            <p><strong>Salary:</strong> <span id="modalSalary"></span></p>
-            <p><strong>Skills:</strong> <span id="modalSkills"></span></p>
+            <p>
+                <strong>Company:</strong>
+                <span id="modalCompany"></span>
+            </p>
+
+            <p>
+                <strong>Location:</strong>
+                <span id="modalLocation"></span>
+            </p>
+
+            <p>
+                <strong>Job Type:</strong>
+                <span id="modalType"></span>
+            </p>
+
+            <p>
+                <strong>Salary:</strong>
+                <span id="modalSalary"></span>
+            </p>
+
+            <p>
+                <strong>Skills:</strong>
+                <span id="modalSkills"></span>
+            </p>
+
             <p><strong>Description:</strong></p>
             <p id="modalDescription"></p>
         </div>
     </dialog>
-
 
     <footer class="footer">
         <p>CareerTrack &copy; 2026 Built by Nikhil Singh</p>
